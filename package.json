@@ -1,0 +1,30 @@
+{
+  "name": "chained-functions",
+  "version": "0.1.0",
+  "description": "Chain functions in a sequence. Pass the response from one to another.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romulorvs/chained-functions.git"
+  },
+  "keywords": [
+    "chained functions",
+    "chain function",
+    "chain functions",
+    "chain",
+    "function",
+    "functions"
+  ],
+  "author": "RomuloVS",
+  "license": "MIT License",
+  "bugs": {
+    "url": "https://github.com/romulorvs/chained-functions"
+  },
+  "homepage": "https://github.com/romulorvs/chained-functions",
+  "devDependencies": {
+    "jest": "^28.1.2"
+  }
+}
