@@ -17,11 +17,11 @@ function set3() { // Setting the start value of the chain
     return 3;
 }
 
-function sum10(curr) { // Getting the response of the previous function
+function sum10(curr) { // Getting the return of the previous function
     return curr + 10; // 3 + 10
 }
 
-function minus5(curr) { // Getting the response of the previous function
+function minus5(curr) { // Getting the return of the previous function
     return curr - 5; // 13 - 5
 }
 
@@ -34,7 +34,7 @@ console.log(result) // 8
 
 ------------
 
-## Using Async Functions
+## Chaining Async Functions
 
 You can use **chainAsync** if some of the functions are **async**.
 
@@ -72,18 +72,18 @@ If you need to insert a value at the beginning of the chain or break it conditio
 import { chain, addLink, breakChain } from 'chained-functions';
 
 const result = await chain(
-    addLink(20), // Adding value 10 to the start of the chain
+    addLink(20), // Adding value 20 to the start of the chain
     (curr) => {
         if(curr > 10){
-            return breakChain(curr) // Breaking the chain and returning 10
+            return breakChain(curr) // Breaks the chain and returns curr (20)
         } else {
             return curr
         }
     },
-    (curr) => curr + 25 // this "link" will not be executed
+    (curr) => curr + 10 // This step will not be executed
 )
 
-console.log(result) // 10
+console.log(result) // 20
 ```
 **PS:** If you just want to break the chain and return the current value, you can just return the **breakChain** function as a value (without calling it).
 
@@ -99,7 +99,7 @@ import { chain } from 'chained-functions';
 // typing the return as "number"
 const result = chain<number>(firstFn, secondFn, lastFn)
 
-// If you need the precise type, set it as the return type of the last function.
+// If you need the precise type, set it as the return type of the last function
 const result = chain<ReturnType<typeof lastFn>>(firstFn, secondFn, lastFn)
 ```
 

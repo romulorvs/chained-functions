@@ -1,7 +1,7 @@
 {
   "name": "chained-functions",
-  "version": "0.1.1",
-  "description": "Run functions sequentially. Pass the response from one to another.",
+  "version": "0.1.2",
+  "description": "Run functions sequentially. Pass the return from one to another.",
   "main": "index.js",
   "scripts": {
     "test": "jest"
