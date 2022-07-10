@@ -26,7 +26,7 @@ function minus5(curr) { // Getting the return of the previous function
 }
 
 /**
- * chaining them and getting the result
+ * chaining them and displaying the result
  */
 const result = chain(set3, sum10, minus5)
 console.log(result) // 8
@@ -36,7 +36,7 @@ console.log(result) // 8
 
 ## Chaining Async Functions
 
-You can use **chainAsync** if some of the functions are **async**.
+You can use **chainAsync** when dealing with async functions.
 
 ```js
 import { chainAsync } from 'chained-functions';
@@ -45,7 +45,7 @@ import { chainAsync } from 'chained-functions';
  * defining the functions
  */
 async function fetchFromDB() {
-    ...
+    ... // fetching data
     return dataResponse;
 }
 
@@ -54,51 +54,51 @@ function formatResponse(curr) {
 }
 
 /**
- * chaining them and getting the result
+ * chaining them and displaying the result
  */
 (async () => {
-    // chainAsync returns a Promise with the result.
     const result = await chainAsync(fetchFromDB, formatResponse)
+    console.log(result) // { message: dataResponse }
 })()
 ```
 
 ------------
 
-## Inserting Values and Breaking the Chain conditionally
+## Breaking the Chain and Inserting Values
 
-If you need to insert a value at the beginning of the chain or break it conditionally, you can use the **addLink** and **breakChain** functions.
+When you need to break the chain at a certain step or insert a value at the beginning of the chain, use the **breakChain** and **addLink** functions.
 
 ```js
 import { chain, addLink, breakChain } from 'chained-functions';
 
 const result = chain(
-    addLink(20), // Adding value 20 to the start of the chain
-    (curr) => {
-        if(curr > 10){
-            return breakChain(curr) // Breaks the chain and returns curr (20)
-        }
-        return curr
-    },
-    (curr) => curr + 10 // This step will not be executed
+  addLink(40), // Adding value 40 to the start of the chain
+  (curr) => {
+    if(curr > 30){
+      return breakChain("over 30") // Breaks the chain and returns "over 30"
+    }
+    return curr
+  },
+  (curr) => curr + 50 // This step will not be executed
 )
 
-console.log(result) // 20
+console.log(result) // over 30
 ```
-**PS:** If you just want to break the chain and return the current value, you can just return the **breakChain** function as a value (without calling it).
+**Tip:** To break the chain and return the current value of the step, just return the **breakChain** function (without calling it).
 
 ------------
 
-## Typing the Return Value
+## Typing the returned value
 
-If you're using Typescript, you can set the return type as a **Generic** of the **chain/asyncChain** function.
+When using Typescript, you can set the return type as a **Generic** of the **chain/asyncChain** function.
 
 ```ts
 import { chain } from 'chained-functions';
 
-// typing the return as "number"
+// Typing the return as "number"
 const result = chain<number>(firstFn, secondFn, lastFn)
 
-// If you need the precise type, set it as the return type of the last function
+// To get the precise type, use ReturnType<> with last function
 const result = chain<ReturnType<typeof lastFn>>(firstFn, secondFn, lastFn)
 ```
 
