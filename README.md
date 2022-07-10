@@ -1,6 +1,6 @@
 # Chained Functions
 
-*Chain functions in a sequence. Pass the return from one to another*
+*Run functions sequentially. Pass the return from one to another.*
 
 ![npm](https://img.shields.io/npm/dt/chained-functions.svg)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/chained-functions)
@@ -13,11 +13,13 @@ import { chain } from 'chained-functions';
 /**
  * defining the functions
  */
-function set3() { // Setting the start value of the chain
+// Setting the start value of the chain
+function set3() {
     return 3;
 }
 
-function sum10(curr) { // The return of the previous function will be passed as argument for the current one
+// The return of the previous function will be passed as argument for the current one
+function sum10(curr) {
     return curr + 10; // 3 + 10
 }
 
@@ -61,7 +63,8 @@ function formatResponse(curr) {
  * chaining them and getting the result
  */
 (async () => {
-    const result = await chainAsync(fetchFromDB, formatResponse) // chainAsync returns a Promise with the result.
+    // chainAsync returns a Promise with the result.
+    const result = await chainAsync(fetchFromDB, formatResponse)
 })()
 ```
 
