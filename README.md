@@ -17,11 +17,11 @@ function set3() { // Setting the start value of the chain
     return 3;
 }
 
-function sum10(curr) { // The return of the previous function will be passed to the next
+function sum10(curr) { // Getting the response of the previous function
     return curr + 10; // 3 + 10
 }
 
-function minus5(curr) {
+function minus5(curr) { // Getting the response of the previous function
     return curr - 5; // 13 - 5
 }
 
@@ -45,12 +45,8 @@ import { chainAsync } from 'chained-functions';
  * defining the functions
  */
 async function fetchFromDB() {
-    /**
-     * Fetching data from the database usually takes sometime,
-     * so you'll usually have to run it as an async function.
-     */
     ...
-    return dataResponse; // Returning data after being fetched
+    return dataResponse;
 }
 
 function formatResponse(curr) {
@@ -76,19 +72,18 @@ If you need to insert a value at the beginning of the chain or break it conditio
 import { chain, addLink, breakChain } from 'chained-functions';
 
 const result = await chain(
-    addLink("Jennifer"), // Adding value "Jennifer" to the start of the chain
-    (curr) => curr + " Love",
+    addLink(20), // Adding value 10 to the start of the chain
     (curr) => {
-        if(curr === "Jennifer Love"){
-            return breakChain(curr) // Breaking the chain and returning "Jennifer Love"
+        if(curr > 10){
+            return breakChain(curr) // Breaking the chain and returning 10
         } else {
             return curr
         }
     },
-    (curr) => curr + " Hewitt" // this "link" will not be executed
+    (curr) => curr + 25 // this "link" will not be executed
 )
 
-console.log(result) // Jennifer Love
+console.log(result) // 10
 ```
 **PS:** If you just want to break the chain and return the current value, you can just return the **breakChain** function as a value (without calling it).
 
