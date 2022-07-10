@@ -1,6 +1,6 @@
 {
   "name": "chained-functions",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Run functions sequentially. Pass the return from one to another.",
   "main": "index.js",
   "scripts": {
