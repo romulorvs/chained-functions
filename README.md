@@ -13,13 +13,11 @@ import { chain } from 'chained-functions';
 /**
  * defining the functions
  */
-// Setting the start value of the chain
-function set3() {
+function set3() { // Setting the start value of the chain
     return 3;
 }
 
-// The return of the previous function will be passed as argument for the current one
-function sum10(curr) {
+function sum10(curr) { // The return of the previous function will be passed to the next
     return curr + 10; // 3 + 10
 }
 
@@ -82,7 +80,7 @@ const result = await chain(
     (curr) => curr + " Love",
     (curr) => {
         if(curr === "Jennifer Love"){
-            return breakChain(curr) // Breaking the chain at this "link" and returning "Jennifer Love"
+            return breakChain(curr) // Breaking the chain and returning "Jennifer Love"
         } else {
             return curr
         }
