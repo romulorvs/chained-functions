@@ -71,14 +71,13 @@ If you need to insert a value at the beginning of the chain or break it conditio
 ```js
 import { chain, addLink, breakChain } from 'chained-functions';
 
-const result = await chain(
+const result = chain(
     addLink(20), // Adding value 20 to the start of the chain
     (curr) => {
         if(curr > 10){
             return breakChain(curr) // Breaks the chain and returns curr (20)
-        } else {
-            return curr
         }
+        return curr
     },
     (curr) => curr + 10 // This step will not be executed
 )
